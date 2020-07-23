@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 import re 
+import pickle
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -23,11 +24,11 @@ nltk.download('wordnet')
 
 
 def load_data(database_filepath):
-    engine = create_engine(database_filepath)
+    engine = create_engine("sqlite:///{}".format(database_filepath))
     df = pd.read_sql_table('project_4',engine)
     X = df['message']
     Y = df.drop(['id','message','original','genre'],axis=1)
-    return X,Y,list(y_test.columns)
+    return X,Y,list(Y.columns)
 
 
 def tokenize(text):
