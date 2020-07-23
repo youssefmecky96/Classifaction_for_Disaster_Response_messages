@@ -6,7 +6,7 @@
 3. [Usuage](#Usuage)
 4. [License](#license)
  
-## Motivation 
+## Project Motivation 
 This is an application designed to categorize emergenecy messages to their corresponding categry the datset is provided by Figure Eight.
 The motivation behind this is to allow related facilites to react as quickly as possible to emergency messages is if it is classifed correctly then that will allow the corrsponding department to respond quicker and thus saving lives 
 ## File Descriptions
