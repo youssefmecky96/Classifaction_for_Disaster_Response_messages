@@ -44,7 +44,19 @@ def tokenize(text):
 
 
 def build_model():
-    pass
+    pipeline = Pipeline([
+    ('vect', CountVectorizer(tokenizer=tokenize)),
+    ('tfidf', TfidfTransformer()),
+    
+    ('clf',  MultiOutputClassifier(KNeighborsClassifier()))
+    ])
+    parameters = parameters = {
+        'tfidf__use_idf': (True, False),
+        
+        'clf__estimator__weights':('uniform','distance')}
+
+    cv = GridSearchCV(pipeline, param_grid=parameters,n_jobs = -1)
+    return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
