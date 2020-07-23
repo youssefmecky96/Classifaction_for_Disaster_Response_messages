@@ -7,7 +7,7 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar,Pie
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -26,11 +26,11 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/YourDatabaseName.db')
-df = pd.read_sql_table('YourTableName', engine)
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
+df = pd.read_sql_table('project_4', engine)
 
 # load model
-model = joblib.load("../models/your_model_name.pkl")
+model = joblib.load("../models/classifier.pk")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -42,6 +42,8 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+    direct_counts = df.groupby("direct_report").count()['message']/df.shape[0]*100
+    direct_names = ['Not direct','Direct']
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -63,6 +65,12 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+        {
+            "data": [Pie(values=direct_counts, labels=direct_names)],
+            "layout": {
+                "title": "Percentage of direct reports messages",
+            },
         }
     ]
     
