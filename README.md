@@ -6,14 +6,15 @@
 3. [Usuage](#Usuage)
 4. [License](#license)
  
-## Project Motivation 
+## Project Motivation <a name="motivation"></a>
 This is an application designed to categorize emergenecy messages to their corresponding categry the datset is provided by Figure Eight.
 The motivation behind this is to allow related facilites to react as quickly as possible to emergency messages is if it is classifed correctly then that will allow the corrsponding department to respond quicker and thus saving lives 
-## File Descriptions
+## File Descriptions  <a name="files"></a>
 The data directory has a file process_data.py which cleans the data, DisasterResponse.db the database which has the cleaned data, disaster_messages.csv and disaster_categories.csv which are the raw data processed 
 The models directory has a train_classifier.py which trains the ML model to classify the data and classfier.zip  which is the trained model but zipped as it was too big to upload directly to github you would have to unzip it and name it as classifier.pk for it work with web app correctly
-The app directory has the HTML templates and the run.py which visulize the results into a web abb
-##Usuage:
+The app directory has the HTML templates and the run.py which visulize the results into a web app
+
+## Usuage <a name="Usuage"></a>
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
@@ -25,7 +26,7 @@ The app directory has the HTML templates and the run.py which visulize the resul
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
-##License 
+## License <a name="license"></a>
 
 MIT License
 
