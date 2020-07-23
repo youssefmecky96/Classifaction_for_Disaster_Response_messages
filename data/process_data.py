@@ -38,11 +38,12 @@ def clean_data(df):
     df.drop_duplicates(inplace=True)
     #noticed that related column has value equal 2 which doesn't make sense so we remove it here
     df=df[df['related']!=2]
+    return df
     
 
 
 def save_data(df, database_filename):
-    engine = create_engine(database_filename)
+    engine = create_engine("sqlite:///{}".format(database_filename))
     df.to_sql('project_4', engine, index=False)  
 
 
