@@ -14,6 +14,8 @@ The data directory has a file process_data.py which cleans the data, DisasterRes
 The models directory has a train_classifier.py which trains the ML model to classify the data and classfier.zip  which is the trained model but zipped as it was too big to upload directly to github you would have to unzip it and name it as classifier.pk for it work with web app correctly
 The app directory has the HTML templates and the run.py which visulize the results into a web app
 
+Link to github repo https://github.com/youssefmecky96/Classifaction_for_Disaster_Response_messages
+
 ## Usuage <a name="Usuage"></a>
 1. Run the following commands in the project's root directory to set up your database and model.
 
