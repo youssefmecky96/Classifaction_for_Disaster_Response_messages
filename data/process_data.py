@@ -59,7 +59,7 @@ def save_data(df, database_filename):
     output: no out put
     """
     engine = create_engine("sqlite:///{}".format(database_filename))
-    df.to_sql('project_4', engine, index=False)  
+    df.to_sql('project_4', engine, index=False,if_exists='replace')  
 
 
 def main():
