@@ -24,6 +24,11 @@ nltk.download('wordnet')
 
 
 def load_data(database_filepath):
+     """
+    usuage loads data from a database 
+    input: database_filepath
+    output: X input to ML model Y result variavle and columns name
+    """
     engine = create_engine("sqlite:///{}".format(database_filepath))
     df = pd.read_sql_table('project_4',engine)
     X = df['message']
@@ -32,6 +37,11 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """
+    usuage normalizes case,removes punctuation,tokenizes words,lemmatize and removes stop words 
+    input: text
+    output: tokenized text
+    """
      # normalize case and remove punctuation
     text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
     
@@ -45,6 +55,11 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    usuage builds a pipline that tokenizes the input ,uses Tdidf transform to extract features and uses that as an input a Kneighbour classifier, performs grid search as well 
+    input: none
+    output: the ideal model from the grid search
+    """
     pipeline = Pipeline([
     ('vect', CountVectorizer(tokenizer=tokenize)),
     ('tfidf', TfidfTransformer()),
@@ -61,6 +76,11 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    usuage outputs scores for model  
+    input: model , X_test test data , Y_test correct results, category_names
+    output:prints scores for how well the model preforms
+    """
     y_pred=model.predict(X_test)
     print(
         classification_report(Y_test, y_pred, target_names=category_names)
@@ -68,6 +88,11 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    """
+    usuage saves model into a pickle file
+    input: model ,model_filepath
+    output:no output
+    """
     pickle.dump(model, open(model_filepath, "wb"))
 
 
